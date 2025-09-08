@@ -8,7 +8,6 @@ const Billboard:React.FC<BillboardProps> = ({
     data
 }) =>{
 
-    console.log("test",data)
     return(
         <div className="p-4 sm:p-6 lg:p-8 rounded-xl overflow-hidden">
             <div style={{backgroundImage:`url(${data.imageUrl})`}}   className="rounded-xl relative h-[400px] w-full overflow-hidden bg-cover bg-center "
