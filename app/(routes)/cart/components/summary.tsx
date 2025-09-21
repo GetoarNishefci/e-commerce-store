@@ -6,6 +6,7 @@ import useCart from "@/hooks/use-cart";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import { useEffect } from "react";
+import toast from "react-hot-toast";
 
 const Summary = () =>{
     const searchParams = useSearchParams();
@@ -13,8 +14,14 @@ const Summary = () =>{
     const removeAll = useCart((state)=>state.removeAll);
 
     useEffect(()=>{
-        if(searchParams.get("success"))
-    })
+        if(searchParams.get("success")){
+            toast.success("Payment Completed");
+            removeAll();
+        }
+        if(searchParams.get("canceled")){
+            toast.success("Something went wrong.");
+        }
+    },[searchParams,removeAll])
 
     const totalPrice = items.reduce((total,item) =>{
         return total + Number(item.price)
@@ -41,7 +48,7 @@ const Summary = () =>{
                     <Currency value={totalPrice}/>
                 </div>
             </div>
-            <Button onClick={onCheckOut} className="w-full mt-6">
+            <Button disabled={items.length === 0} onClick={onCheckOut} className="w-full mt-6">
                 Checkout
             </Button>
         </div>
