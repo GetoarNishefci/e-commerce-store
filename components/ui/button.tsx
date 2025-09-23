@@ -1,23 +1,19 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
 
-export interface ButtoProps
-extends React.ButtonHTMLAttributes<HTMLButtonElement>{}
+export interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
 
-const Button = forwardRef<HTMLButtonElement,ButtoProps>(({
-    className,
-    children,
-    disabled,
-    type = "button",
-    ...props
-},ref) => {
-    return(
-        <button
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ className, children, disabled, type = "button", ...props }, ref) => {
+    return (
+      <button
         ref={ref}
+        type={type} // ✅ use the 'type' prop here
         {...props}
         disabled={disabled}
         className={cn(
-            `
+          `
             w-auto
             rounded-full
             bg-black
@@ -30,14 +26,15 @@ const Button = forwardRef<HTMLButtonElement,ButtoProps>(({
             font-semibold
             hover:opacity-75
             transition
-            `,
-            className
+          `,
+          className
         )}
-        >
-            {children}
-        </button>
-    )
-});
+      >
+        {children}
+      </button>
+    );
+  }
+);
 
 Button.displayName = "Button";
 
