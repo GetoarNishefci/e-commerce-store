@@ -43,13 +43,12 @@ const onClick = (id: string) => {
   router.push(url);
 };
 
-console.log("test",data)
     return(
         <div className="mb-8">
         <h3>
             {name}
         </h3>
-        <hr className="my-4"/>
+        <hr className="my-4 border border-gray-300 mr-2"/>
         <div className="flex flex-wrap gap-2">
             {data.map((filter)=>(
                 <div key={filter.id} className="flex items-center">
